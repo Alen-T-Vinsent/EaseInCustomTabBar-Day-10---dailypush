@@ -18,9 +18,28 @@ enum Tab:String,CaseIterable{
 struct ContentView: View {
     @Binding var selectedTab:Tab
     
+    
+  
+    
     private var fillImage:String {
-        selectedTab.rawValue + "fill"
+        selectedTab.rawValue + ".fill"
     }
+    
+    private var tabColour:Color{
+        switch selectedTab{
+        case .house:
+            return .blue
+        case .message:
+            return .green
+        case .person:
+            return .indigo
+        case .leaf:
+            return .green
+        case .gearshape:
+            return .orange
+        }
+    }
+    
     var body: some View {
         VStack {
             HStack{
@@ -28,11 +47,13 @@ struct ContentView: View {
                     Spacer()
                     Image(systemName: selectedTab == eachTab ? fillImage : eachTab.rawValue)
                         .scaleEffect(selectedTab == eachTab ? 1.25 : 1.0)
-                        .foregroundColor(selectedTab == eachTab ? .red : .gray)
+                        .foregroundColor(selectedTab == eachTab ? tabColour : .gray)
                         .font(.system(size: 22))
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.1)){
+                                print(eachTab)
                                 selectedTab = eachTab
+                                print(selectedTab)
                             }
                         }
                     Spacer()
@@ -46,8 +67,3 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(selectedTab: .constant(.house))
-    }
-}

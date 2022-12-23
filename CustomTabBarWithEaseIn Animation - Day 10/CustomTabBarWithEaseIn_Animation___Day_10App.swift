@@ -3,12 +3,13 @@
 import SwiftUI
 
 @main
-struct ___PACKAGENAME: App {
+struct CustomTabBarWithEaseIn_Animation___Day_10App: App {
     var body: some Scene {
         WindowGroup {
             
             HomeView()
-           // ContentView(selectedTab: .constant(.house))
+                .preferredColorScheme(.dark)
+           
             
         }
     }
